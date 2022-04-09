@@ -1,13 +1,15 @@
 import React from "react";
 import Form from "../components/Form";
 import List from "../components/List";
-import "./style.scss";
+import Stopwatch from "../components/Stopwatch";
+import style from "./App.module.scss";
 
 function App() {
   return (
-    <div className="AppStyle">
+    <div className={style.AppStyle}>
       <Form />
       <List />
+      <Stopwatch />
     </div>
   );
 }
