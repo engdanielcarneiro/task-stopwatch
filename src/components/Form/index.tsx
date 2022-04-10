@@ -6,9 +6,10 @@ import style from "./Form.module.scss";
 
 interface Props {
   setTasks: React.Dispatch<React.SetStateAction<ITasks>>;
+  dataTestId: string;
 }
 
-function Form({ setTasks }: Props) {
+function Form({ setTasks, dataTestId }: Props) {
   const [name, setName] = useState("");
   const [time, setTime] = useState("00:00");
 
@@ -23,7 +24,7 @@ function Form({ setTasks }: Props) {
   }
 
   return (
-    <form onSubmit={addTask} className={style.newTask}>
+    <form data-testid={dataTestId} onSubmit={addTask} className={style.newTask}>
       <div className={style.inputContainer}>
         <label htmlFor="task">Add a task</label>
         <input
@@ -32,6 +33,7 @@ function Form({ setTasks }: Props) {
           value={name}
           onChange={(event) => setName(event.target.value)}
           id="task"
+          data-testid="input-task-name"
           placeholder="What do you want to study?"
           required
         />
@@ -45,6 +47,7 @@ function Form({ setTasks }: Props) {
           value={time}
           onChange={(event) => setTime(event.target.value)}
           id="time"
+          data-testid="input-task-time"
           min="00:00:00"
           max="05:00:00"
           required

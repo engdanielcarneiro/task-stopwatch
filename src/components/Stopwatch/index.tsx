@@ -8,9 +8,10 @@ import style from "./Stopwatch.module.scss";
 interface Props {
   selected?: ITask;
   endTask: () => void;
+  dataTestId: string;
 }
 
-export default function Stopwatch({ selected, endTask }: Props) {
+export default function Stopwatch({ selected, endTask, dataTestId }: Props) {
   const [time, setTime] = useState<number>();
 
   useEffect(() => {
@@ -19,23 +20,26 @@ export default function Stopwatch({ selected, endTask }: Props) {
     }
   }, [selected]);
 
-  function regressive(counter: number = 0) {
+  function countdown(counter: number = 0) {
+    // Testing function call via log with Jest. Is it a good practice? Probably not...
+    console.log("");
+
     setTimeout(() => {
       if (counter > 0) {
         setTime(counter - 1);
-        return regressive(counter - 1);
+        return countdown(counter - 1);
       }
       endTask();
     }, 1000);
   }
 
   return (
-    <div className={style.stopwatch}>
+    <div data-testid={dataTestId} className={style.stopwatch}>
       <p className={style.title}> Choose a card and start the stopwatch</p>
       <div className={style.clockWrapper}>
         <Clock time={time} />
       </div>
-      <Button onClick={() => regressive(time)}>Start!</Button>
+      <Button onClick={() => countdown(time)}>Start!</Button>
     </div>
   );
 }

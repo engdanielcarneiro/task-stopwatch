@@ -3,6 +3,7 @@ import Form from "../../components/Form";
 import List from "../../components/List";
 import Stopwatch from "../../components/Stopwatch";
 import { ITask, ITasks } from "../../types/task";
+import style from "./Home.module.scss";
 
 export default function Home() {
   const [tasks, setTasks] = useState<ITasks>([]);
@@ -37,9 +38,10 @@ export default function Home() {
   }
   return (
     <>
-      <Form setTasks={setTasks} />
-      <List selectTask={selectTask} tasks={tasks} />
-      <Stopwatch endTask={endTask} selected={selected} />
+      <h1 className={style.title}> Alura Studying Guide</h1>
+      <Form dataTestId="form" setTasks={setTasks} />
+      <List dataTestId="task-list" selectTask={selectTask} tasks={tasks} />
+      <Stopwatch dataTestId="stopwatch" endTask={endTask} selected={selected} />
     </>
   );
 }

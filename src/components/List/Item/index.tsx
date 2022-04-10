@@ -15,8 +15,11 @@ export default function Item({
 }: Props) {
   return (
     <li
+      data-testid="item"
       onClick={() => {
-        !completed && selectTask({ name, time, selected, completed, id });
+        !completed &&
+          !selected &&
+          selectTask({ name, time, selected, completed, id });
       }}
       className={`${style.item} ${selected ? style.selectedItem : ""} ${
         completed ? style.completedItem : ""
