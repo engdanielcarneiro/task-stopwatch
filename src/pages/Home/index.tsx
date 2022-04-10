@@ -1,11 +1,10 @@
-import React, { useState } from "react";
-import Form from "../components/Form";
-import List from "../components/List";
-import Stopwatch from "../components/Stopwatch";
-import { ITask, ITasks } from "../types/task";
-import style from "./App.module.scss";
+import { useState } from "react";
+import Form from "../../components/Form";
+import List from "../../components/List";
+import Stopwatch from "../../components/Stopwatch";
+import { ITask, ITasks } from "../../types/task";
 
-function App() {
+export default function Home() {
   const [tasks, setTasks] = useState<ITasks>([]);
   const [selected, setSelected] = useState<ITask>();
 
@@ -37,12 +36,10 @@ function App() {
     }
   }
   return (
-    <div className={style.AppStyle}>
+    <>
       <Form setTasks={setTasks} />
       <List selectTask={selectTask} tasks={tasks} />
       <Stopwatch endTask={endTask} selected={selected} />
-    </div>
+    </>
   );
 }
-
-export default App;
